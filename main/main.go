@@ -20,5 +20,6 @@ func ReadFileLineByLine(fileName string) []string {
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
+	fmtprintln.(lines)
 	return lines
 }
