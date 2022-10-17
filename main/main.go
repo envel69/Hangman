@@ -9,7 +9,10 @@ import (
 )
 
 func main() {
-	fmt.Println(RandomWord(ligneparligne("words.txt")))
+	RW := RandomWord
+
+	fmt.Println(underscore(RW(ligneparligne("words.txt"))))
+
 }
 
 func random(n int) int {
@@ -18,12 +21,8 @@ func random(n int) int {
 	return x1.Intn(n)
 }
 
-// func RandomWord(words []string) string {
-// 	return words[random(len(words))]
-// }
-
-func RandomWord2(words2 []string) string {
-	return words2[random(len(words2))]
+func RandomWord(words []string) string {
+	return words[random(len(words))]
 }
 
 func ligneparligne(fileName string) []string {
@@ -34,4 +33,12 @@ func ligneparligne(fileName string) []string {
 		lines = append(lines, scanner.Text())
 	}
 	return lines
+}
+
+func underscore(RW string) string {
+	var u string
+	for i := 0; i < len(RW); i++ {
+		u += "_"
+	}
+	return u
 }
