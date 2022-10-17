@@ -35,3 +35,4 @@ rampe
 recreation
 rentree
 toilette
+koloc
