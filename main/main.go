@@ -5,11 +5,17 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"time"
 )
 
 func main() {
-	// fmt.Println(ligneparligne("words.txt"))
 	fmt.Println(RandomWord(ligneparligne("words.txt")))
+}
+
+func random() {
+	y1 := rand.NewSource(time.Now().UnixNano())
+	x1 := rand.New(y1)
+	fmt.Println(x1)
 }
 
 func RandomWord(words []string) string {
