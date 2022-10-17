@@ -37,7 +37,8 @@ func ligneparligne(fileName string) []string {
 
 func underscore(RW string) string {
 	var u string
-	for i := 0; i < len(RW); i++ {
+	//for i := 0; i < len(RW); i++ {
+	for range RW {
 		u += "_"
 	}
 	return u
