@@ -5,21 +5,16 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
-	"time"
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
-	min := 1
-	max := 12
-	fmt.Println(rand.Intn(max-min+1) + min)
+	fmt.Println(RandomWord(linebyline("words.txt")))
+	// r := rand.Intn(3) + 1
 }
-
 func RandomWord(words []string) string {
 	return words[rand.Intn(len(words))]
 }
-
-func ReadFileLineByLine(fileName string) []string {
+func linebyline(fileName string) []string {
 	file, _ := os.Open(fileName)
 	scanner := bufio.NewScanner(file)
 	lines := []string{}
