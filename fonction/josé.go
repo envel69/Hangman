@@ -1,16 +1,25 @@
 package fonction
 
 import (
-	"bufio"
-	"os"
+	"fmt"
+	"io/ioutil"
 )
 
-func LineByLine(fileName string) []string {
-	file, _ := os.Open(fileName)
-	scanner := bufio.NewScanner(file)
-	lines := []string{}
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
+func Jose(numberOfAttemps int) { //fonction qui affiche la position du pendu par rapport au nombre de vie restante
+	var arrayJose []byte
+	initNumberOfLife := 9
+	pos := initNumberOfLife - numberOfAttemps
+	content, err := ioutil.ReadFile("josé.txt")
+
+	if err != nil {
+		fmt.Println("[fichier non trouvé]")
+	} else {
+		for i := 0; i < 71; i++ {
+			arrayJose = append(arrayJose, content[i+(71*pos)])
+
+		}
+		josé := (string(arrayJose))
+		fmt.Println(josé)
+
 	}
-	return lines
 }

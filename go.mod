@@ -1,3 +1,3 @@
-module hangman
+module fonction
 
 go 1.19

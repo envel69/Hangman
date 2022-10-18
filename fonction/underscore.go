@@ -1,10 +1,9 @@
 package fonction
 
-func Underscore(RW string) string { // boucle pour transformé le mot en tiret
-	var u string
-	//for i := 0; i < len(RW); i++ {
-	for range RW {
-		u += "_ "
+func Underscore(words string) string {
+	Rwords := []rune(words)
+	for i := 0; i < len(words); i++ {
+		Rwords[i] = '_'
 	}
-	return u
+	return string(Rwords)
 }

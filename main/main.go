@@ -2,12 +2,29 @@ package main
 
 import (
 	"fmt"
-	"hangman/fonction"
+	"fonction/fonction"
 )
 
-func main() { //fonction main
-	RW := fonction.RandomWord                                                 //racourci de RandomWord pour simplifier
-	fmt.Println(fonction.Underscore(RW(fonction.LigneParLigne("words.txt")))) // ecriture du mot en tiret
-	fmt.Println(fonction.LineByLine("hangman.txt"))                           //affichage de josé
-	fonction.User_App()                                                       //input de user app
+// S'il n'y a pas de lettre modifiée, retire 1 à attempts
+// S'il n'y a plus de '_' c'est gagné
+func main() {
+	RW := fonction.RandomWord
+	// tab := Ligneparligne("../words.txt")
+	fmt.Println("Good Luck, you have 10 attempts.")
+	words := RW(fonction.Ligneparligne("../words.txt"))
+	void := fonction.Underscore(words)
+	fmt.Println(void)
+	// fmt.Println(Underscore(RW(Ligneparligne("../words.txt"))))
+	// fmt.Println(RandomWord(ligneparligne("words.txt")))
+	attempts := 10
+	for attempts > 0 {
+		var lettre string
+		fmt.Print("Rentrez une lettre : ")
+		_, err := fmt.Scanln(&lettre)
+		if err != nil {
+			attempts--
+		}
+		void = fonction.Remplacement(void, words, lettre)
+		fmt.Println(void)
+	}
 }
