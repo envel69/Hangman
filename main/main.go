@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -18,6 +19,7 @@ func main() {
 	words := RW(Ligneparligne("../words.txt"))
 	void := Underscore(words)
 	fmt.Println(void)
+	fmt.Println(Capitalize(void))
 	// fmt.Println(Underscore(RW(Ligneparligne("../words.txt"))))
 	// fmt.Println(RandomWord(ligneparligne("words.txt")))
 	attempts := 10
@@ -29,7 +31,7 @@ func main() {
 			attempts--
 		}
 		void = Remplacement(void, words, lettre)
-		fmt.Println(void)
+		fmt.Println(Capitalize(void))
 	}
 }
 
@@ -71,7 +73,7 @@ func User_app() string {
 
 func Remplacement(void, words, lettre string) string {
 	rune_void := []rune(void)
-	fmt.Println("lettre : ", lettre)
+	// fmt.Println("lettre : ", lettre)
 	for i := 0; i < len(words); i++ {
 		if len(lettre) == 1 {
 			if lettre[0] == words[i] && rune_void[i] == '_' {
@@ -79,7 +81,16 @@ func Remplacement(void, words, lettre string) string {
 			}
 		}
 	}
-	fmt.Println("words : ", words)
-	fmt.Println(string(rune_void))
+	// fmt.Println("words : ", words)
+	// fmt.Println(string(rune_void))
 	return string(rune_void)
+}
+
+// func attemps() {
+
+// }
+
+func Capitalize(min string) string {
+	var maj = strings.ToUpper(min)
+	return (maj)
 }
