@@ -2,11 +2,15 @@ package fonction
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 )
 
 func Ligneparligne(fileName string) []string {
-	file, _ := os.Open(fileName)
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Println(err)
+	}
 	scanner := bufio.NewScanner(file)
 	lines := []string{}
 	for scanner.Scan() {
