@@ -12,7 +12,7 @@ func Attemps(word string) {
 		if err != nil {
 			attempts--
 		}
-		void = Remplacement(void, word, lettre)
+		void = Replace(void, word, lettre)
 		fmt.Println(void)
 	}
 }

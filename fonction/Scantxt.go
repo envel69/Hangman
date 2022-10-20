@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func Ligneparligne(fileName string) []string {
+func Scantxt(fileName string) []string {
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Println(err)

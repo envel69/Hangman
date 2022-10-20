@@ -2,7 +2,7 @@ package fonction
 
 import "fmt"
 
-func Remplacement(void, words, lettre string) string {
+func Replace(void, words, lettre string) string {
 	rune_void := []rune(void)
 	fmt.Println("lettre : ", lettre)
 	for i := 0; i < len(words); i++ {
