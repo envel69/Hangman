@@ -2,8 +2,8 @@ package fonction
 
 import "fmt"
 
-func attemps() {
-	void := fonction.Underscore(words)
+func attemps(word string) {
+	void := Underscore(word)
 	attempts := 10
 	for attempts > 0 {
 		var lettre string
@@ -12,7 +12,7 @@ func attemps() {
 		if err != nil {
 			attempts--
 		}
-		void = fonction.Remplacement(void, words, lettre)
+		void = Remplacement(void, word, lettre)
 		fmt.Println(void)
 	}
 }

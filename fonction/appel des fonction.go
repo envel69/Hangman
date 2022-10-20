@@ -1,13 +1,15 @@
 package fonction
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func appel() {
-	RW := fonction.RandomWord
+func Call() {
+	RW := RandomWord
 	// tab := Ligneparligne("../words.txt")
 	fmt.Println("Good Luck, you have 10 attempts.")
-	words := RW(fonction.Ligneparligne("../words.txt"))
-	void := fonction.Underscore(words)
+	words := RW(Ligneparligne("../words.txt"))
+	void := Underscore(words)
 	fmt.Println(void)
 	// fmt.Println(Underscore(RW(Ligneparligne("../words.txt"))))
 	// fmt.Println(RandomWord(ligneparligne("words.txt")))
