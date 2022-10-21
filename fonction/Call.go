@@ -22,9 +22,9 @@ func Call() {
 	words := RW(Scantxt("words.txt"))
 	void := Underscore(words)
 	fmt.Println(void)
-
-	fmt.Println(words)
-	fmt.Println(void)
+	// fmt.Println(words)
+	//fmt.Println(void)
+	fmt.Println(compare(void))
 
 	for {
 
@@ -32,6 +32,9 @@ func Call() {
 		void = test
 		fmt.Println(void)
 		//Win(test, void)
+		if compare(void) {
+			break
+		}
 	}
 
 }
@@ -121,4 +124,14 @@ func User_App() string {
 }
 func Win(test, void string) string {
 	return "nice"
+}
+func compare(lettre string) bool { // renvoie true si le mot est totallement decouvert sinon false
+	word := []rune(lettre)
+	// fmt.Println("lettre : ", lettre)
+	for i := 0; i < len(word); i++ {
+		if word[i] == '_' {
+			return false
+		}
+	}
+	return true
 }
