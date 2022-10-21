@@ -1,5 +1,7 @@
 package main
 
+import "hangman/fonction"
+
 func main() {
-	fonction.call()
+	fonction.Call()
 }
