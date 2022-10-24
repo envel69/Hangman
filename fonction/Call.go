@@ -25,7 +25,9 @@ func Call() {
 	// fmt.Println(words)
 	//fmt.Println(void)
 	fmt.Println(compare(void))
+	for attempts := 10; attempts > 0; attempts-- {
 
+	}
 	for {
 
 		test := Replace(void, words, User_App())
