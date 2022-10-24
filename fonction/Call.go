@@ -10,13 +10,17 @@ import (
 	"time"
 )
 
-type hangman struct {
-	words      string
+type Hangman struct {
+	Words      string
 	RandomWord string
-	attempts   int
+	Attempts   int
 }
 
+var hangman Hangman
+
 func Call() {
+	hangman.Attempts = 10
+
 	RW := RandomWord
 	fmt.Println("Good Luck, you have 10 attempts.")
 	words := RW(Scantxt("words.txt"))
@@ -25,33 +29,23 @@ func Call() {
 	// fmt.Println(words)
 	//fmt.Println(void)
 	fmt.Println(compare(void))
-	for attempts := 10; attempts > 0; attempts-- {
-
-	}
-	for {
-
-		test := Replace(void, words, User_App())
-		void = test
-		fmt.Println(void)
-		//Win(test, void)
-		if compare(void) {
-			break
-		}
-	}
+	Attemp(hangman, words)
 
 }
-func Attemp(word string) {
+func Attemp(hangman Hangman, word string) {
 	void := Underscore(word)
-	attempts := 10
-	for attempts > 0 {
+	//couble de jeu
+	for hangman.Attempts > 0 {
 		var lettre string
 		fmt.Print("Rentrez une lettre : ")
-		_, err := fmt.Scanln(&lettre)
-		if err != nil {
-			attempts--
-		}
-		void = Replace(void, word, lettre)
+		fmt.Scanln(&lettre)
+		hangman, void = Replace(void, word, lettre)
 		fmt.Println(void)
+		Jose(hangman.Attempts)
+
+		if hangman.Attempts == 0 || compare(void) {
+			break
+		}
 	}
 }
 func Capitalize(min string) string {
@@ -60,21 +54,18 @@ func Capitalize(min string) string {
 }
 func Jose(numberOfAttemps int) { //fonction qui affiche la position du pendu par rapport au nombre de vie restante
 	var arrayJose []byte
-	initNumberOfLife := 10
-	pos := initNumberOfLife - numberOfAttemps
-	content, err := ioutil.ReadFile("josé.txt")
-
-	if err != nil {
-		fmt.Println("re essaye")
+	pos := 10 - numberOfAttemps
+	if pos == 0 {
+		fmt.Println("\n\n\n\n\n\n\n\n")
 	} else {
+		content, _ := ioutil.ReadFile("hangman.txt")
 		for i := 0; i < 71; i++ {
-			arrayJose = append(arrayJose, content[i+(71*pos)])
-
+			arrayJose = append(arrayJose, content[i+(71*(pos-1))])
 		}
-		josé := (string(arrayJose))
-		fmt.Println(josé)
-
+		jose := (string(arrayJose))
+		fmt.Println(jose)
 	}
+
 }
 func Random(n int) int {
 	y1 := rand.NewSource(time.Now().UnixNano())
@@ -84,19 +75,29 @@ func Random(n int) int {
 func RandomWord(words []string) string {
 	return words[Random(len(words))]
 }
-func Replace(void, words, lettre string) string {
+func Replace(void, words, lettre string) (Hangman, string) {
 	rune_void := []rune(void)
+	var faute bool = false
 	// fmt.Println("lettre : ", lettre)
+
 	for i := 0; i < len(words); i++ {
 		if len(lettre) == 1 {
-			if lettre[0] == words[i] && rune_void[i] == '_' {
+			if (lettre[0] == words[i] && rune_void[i] == '_') || lettre[0] == byte(rune_void[i]) {
 				rune_void[i] = rune(lettre[0])
+				faute = true
 			}
 		}
 	}
+	if strings.ToUpper(lettre) == strings.ToUpper(words) {
+		rune_void = []rune(words)
+		faute = true
+	}
+	if faute == false {
+		hangman.Attempts -= 1
+	}
 	// fmt.Println("words : ", words)
 	// fmt.Println(string(rune_void))
-	return string(rune_void)
+	return hangman, string(rune_void)
 }
 func Scantxt(fileName string) []string {
 	file, err := os.Open(fileName)
@@ -118,12 +119,7 @@ func Underscore(words string) string {
 	}
 	return string(Rwords)
 }
-func User_App() string {
-	var lettre string
-	fmt.Println("choisie la lettre: ")
-	fmt.Scanln(&lettre)
-	return lettre
-}
+
 func Win(test, void string) string {
 	return "nice"
 }
